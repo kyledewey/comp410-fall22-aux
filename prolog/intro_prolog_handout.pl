@@ -4,9 +4,9 @@ warm(burger).
 warm(burrito).
 
 % 3.)
+likes(alice, yogurt).
 likes(alice, pizza).
 likes(alice, burger).
-likes(alice, yogurt).
 likes(alice, burrito).
 likes(bob, pizza).
 likes(bob, burger).
@@ -32,6 +32,31 @@ likes(mel, Food) :-
 %%     likes(janet, Food).
 
 
-likesWarmFood(Food) :-
-    likes(bill, Food),
+likesWarmFood(Person, Food) :-
+    likes(Person, Food),
     warm(Food).
+
+between5and7Inclusive(Value) :-
+    5 =< Value,
+    Value =< 7.
+
+%% :-(between5and7Inclusive(Value),
+%%    ','(=<(5, Value),
+%%        =<(Value, 7))).
+
+experiment(1).
+%% experiment(2).
+%% experiment(2).
+%% experiment(2).
+%% experiment(2).
+experiment(X) :- X is 1 + 1.
+experiment(1).
+experiment(X) :- X is 1 + 1 - 1.
+
+%% areEqual(X, X).
+
+%% areEqual(X, Y) :-
+%%     X = Y.
+
+:-(areEqual(X, Y),
+   =(X, Y)).
