@@ -17,15 +17,43 @@ sumAll([Head|Tail], Output) :-
     Output is Head + TailResult. % NOT tail recursive
 
 % accumulator - where the result is stored
-% sumAllTailRecursiveHelper: List, Accum, Result
-sumAllTailRecursiveHelper([], Accum, Output) :-
-    Output = Accum.
-sumAllTailRecursiveHelper([Head|Tail], Accum, Result) :-
+% sumAllTailRecursive: List, Accum, Result
+% sumAllTailRecursive/3
+sumAllTailRecursive([], Accum, Accum).
+sumAllTailRecursive([Head|Tail], Accum, Result) :-
     NewAccum is Accum + Head,
-    sumAllTailRecursiveHelper(Tail, NewAccum, Result).
+    sumAllTailRecursive(Tail, NewAccum, Result).
 
+% sumAllTailRecursive/2
 sumAllTailRecursive(List, Result) :-
-    sumAllTailRecursiveHelper(List, 0, Result).
+    sumAllTailRecursive(List, 0, Result).
+
 %% sumAllTailRecursive([], 0).
 %% sumAllTailRecursive([Head|Tail], Result) :-
 %%     sumAllTailRecursiveHelper(Tail, Head, Result).
+
+% addAmount: List, AmountToAdd, OutputList
+addAmount([], _, []).
+addAmount([Head|Tail], Amount, [HeadPlusAmount|Rest]) :-
+    HeadPlusAmount is Head + Amount,
+    addAmount(Tail, Amount, Rest).
+
+% myReverse/3: InputList, Accum, OutputList
+%% myReverse([], Accum, OutputList) :-
+%%     Accum = OutputList.
+myReverse([], Accum, Accum).
+myReverse([Head|Tail], Accum, OutputList) :-
+    NewAccum = [Head|Accum],
+    myReverse(Tail, NewAccum, OutputList).
+
+% myReverse/2: InputList, OutputList
+myReverse(InputList, OutputList) :-
+    myReverse(InputList, [], OutputList).
+
+sublist([], []).
+% case 1: put in output
+sublist([Head|Tail], [Head|Tail2]) :-
+    sublist(Tail, Tail2).
+% case 2: don't put in output
+sublist([_|Tail], List) :-
+    sublist(Tail, List).

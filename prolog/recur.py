@@ -27,3 +27,9 @@ def sumAllTailRecursiveHelper(my_list, accum):
     
 def sumAllTailRecursive(my_list):
     return sumAllTailRecursiveHelper(my_list, 0)
+
+def reverseHelper(input_list, accum):
+    if len(input_list) == 0:
+        return accum
+    else:
+        reverseHelper(input_list[1:], input_list[0] ++ accum)
