@@ -34,9 +34,10 @@ sumAllTailRecursive(List, Result) :-
 
 % addAmount: List, AmountToAdd, OutputList
 addAmount([], _, []).
-addAmount([Head|Tail], Amount, [HeadPlusAmount|Rest]) :-
+addAmount([Head|Tail], Amount, Output) :-
     HeadPlusAmount is Head + Amount,
-    addAmount(Tail, Amount, Rest).
+    addAmount(Tail, Amount, Rest),
+    Output = [HeadPlusAmount|Rest].
 
 % myReverse/3: InputList, Accum, OutputList
 %% myReverse([], Accum, OutputList) :-
@@ -57,3 +58,28 @@ sublist([Head|Tail], [Head|Tail2]) :-
 % case 2: don't put in output
 sublist([_|Tail], List) :-
     sublist(Tail, List).
+
+% drop([foo, bar, baz], 0, OutputList).
+%   OutputList = [foo, bar, baz].
+% drop([foo, bar, baz], 1, OutputList).
+%   OutputList = [bar, baz].
+% drop([foo, bar, baz], 2, OutputList).
+%   OutputList = [baz].
+% drop([foo, bar, baz], 3, OutputList).
+%   OutputList = [].
+% drop([foo, bar, baz], 4, OutputList).
+%   OutputList = [].
+drop(List, 0, List).
+drop([], N, []) :-
+    N > 0.
+drop([_|Tail], N, OutputList) :-
+    N > 0,
+    NMOne is N - 1,
+    drop(Tail, NMOne, OutputList).
+
+% contains: List, Element
+contains([Head|_], Element) :-
+    Head = Element.
+contains([_|Tail], X) :-
+    contains(Tail, X).
+
