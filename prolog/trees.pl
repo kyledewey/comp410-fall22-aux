@@ -4,8 +4,8 @@
 % numNodes: BinaryTree, Count
 numNodes(leaf, 1).
 numNodes(internal(Left, _, Right), Count) :-
-    numNodes(Left, LeftCount),
-    numNodes(Right, RightCount),
+    numNodes(Left, LeftCount), % LeftCount = 1
+    numNodes(Right, RightCount), % RightCount = 1
     Count is LeftCount + RightCount + 1.
 
 % addAmountTree: InputBinaryTree, AmountToAdd, OutputBinaryTree
@@ -20,8 +20,8 @@ addAmountTree(internal(Left, Value, Right),
 % extractValues: InputBinaryTree, OutputListOfValues
 extractValues(leaf, []).
 extractValues(internal(Left, Value, Right), Result) :-
-    extractValues(Right, RightResult),
     extractValues(Left, LeftResult),
+    extractValues(Right, RightResult),
     append(LeftResult, [Value|RightResult], Result).
 
 % extractValuesWithBound: Bound, Tree, List

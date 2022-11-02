@@ -13,6 +13,16 @@ op(div).
 isInteger(1).
 isInteger(2).
 
+% exp/1
+% expNoBound: Exp
+expNoBound(integer(Int)) :-
+    isInteger(Int).
+expNoBound(binop(Exp1, Op, Exp2)) :-
+    expNoBound(Exp1),
+    op(Op),
+    expNoBound(Exp2).
+
+
 % exp/2
 % exp: Bound, Exp
 exp(_, integer(Int)) :-
