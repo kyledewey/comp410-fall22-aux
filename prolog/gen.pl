@@ -13,7 +13,7 @@ op(div).
 isInteger(1).
 isInteger(2).
 
-% exp/1
+% expNoBound/1
 % expNoBound: Exp
 expNoBound(integer(Int)) :-
     isInteger(Int).
