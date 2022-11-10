@@ -1,0 +1,3 @@
+%
+isInteger(X) :-
+    

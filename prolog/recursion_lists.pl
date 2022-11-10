@@ -1,4 +1,12 @@
 % myAppend: InputList1, InputList2, OutputList
+% [minimumNumberOfSolutions, maximumNumberOfSolutions]
+% det: [1, 1]
+% multi: [1, N]
+% semidet: [0, 1]
+% nondet: [0, N]
+%% :- pred myAppend(list(A), list(A), list(A)).
+%% :- myAppend(in, in, out) is det.
+%% :- myAppend(out, out, in) is multi.
 myAppend([], List, List).
 myAppend([Head|Tail], List, [Head|Rest]) :-
     myAppend(Tail, List, Rest). % tail recursive
